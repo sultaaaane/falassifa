@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:22:27 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 18:41:52 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:55:08 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,33 @@ bool	did_it_end(t_table *table)
 	return (false);
 }
 
+int	ft_usleep(long time_in_ms, t_table *table)
+{
+	long	start;
+
+	start = get_time();
+	while ((get_time() - start) < time_in_ms)
+	{
+		if (did_it_end(table))
+			return (0);
+		usleep(500);
+	}
+	return (0);
+}
+
 void	*routine(void *args)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)args;
-	if (philo->id % 2 == 0)
-		ft_usleep(10, philo->table);
 	if (philo->table->nb_philos == 1)
 	{
-		if (did_it_end(philo->table))
-			return (NULL);
-		pthread_mutex_lock(philo->left_fork);
 		print_msg(philo, philo->id, " has taken a fork");
-		pthread_mutex_unlock(philo->left_fork);
 		ft_usleep(philo->table->time_to_die, philo->table);
-		pthread_mutex_lock(philo->table->print_mtx);
-		print_msg(philo, philo->id, "Died");
-		pthread_mutex_unlock(philo->table->print_mtx);
 		return (NULL);
 	}
+	if (philo->id % 2 == 0)
+		ft_usleep(1, philo->table);
 	while (!did_it_end(philo->table))
 	{
 		eating(philo);
@@ -78,16 +85,3 @@ int	l3acha2(t_table *table)
 	return (0);
 }
 
-int	ft_usleep(long time_in_ms, t_table *table)
-{
-	long	start;
-
-	start = get_time();
-	while ((get_time() - start) < time_in_ms)
-	{
-		if (did_it_end(table))
-			return (0);
-		usleep(500);
-	}
-	return (0);
-}

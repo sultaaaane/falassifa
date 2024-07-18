@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:20:56 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 12:42:01 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:13:04 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@
 # include <unistd.h>
 
 # define MAX_PHILOSOPHERS 200
-
-# define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
-# define YELLOW "\033[0;33m"
-# define BLUE "\033[0;34m"
-# define MAGENTA "\033[0;35m"
-# define CYAN "\033[0;36m"
-# define RESET "\033[0m"
 
 typedef pthread_t		t_thread;
 typedef pthread_mutex_t	t_mutex;
