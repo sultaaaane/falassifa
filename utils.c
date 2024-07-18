@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 16:08:21 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/14 21:16:15 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:56:38 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	is_positive(t_table *table)
 {
-	if (table->nb_philosophers <= 0 || table->time_to_die <= 0
+	if (table->nb_philos <= 0 || table->time_to_die <= 0
 		|| table->time_to_eat <= 0 || table->time_to_sleep <= 0)
 		return (0);
 	return (1);
 }
 
-int	parse(int ac, char **av, t_table *table)
+int parse_helper(int ac,char **av)
 {
 	int	i;
 
@@ -31,10 +31,17 @@ int	parse(int ac, char **av, t_table *table)
 			return (0);
 		i++;
 	}
-	table->nb_philosophers = ft_enhanced_atoi(av[1]);
-	table->time_to_die = ft_enhanced_atoi(av[2]) * 1e3;
-	table->time_to_eat = ft_enhanced_atoi(av[3]) * 1e3;
-	table->time_to_sleep = ft_enhanced_atoi(av[4]) * 1e3;
+	return (1);
+}
+
+int	parse(int ac, char **av, t_table *table)
+{
+	if (parse_helper(ac, av) == 0)
+		return (0);
+	table->nb_philos = ft_enhanced_atoi(av[1]);
+	table->time_to_die = ft_enhanced_atoi(av[2]);
+	table->time_to_eat = ft_enhanced_atoi(av[3]);
+	table->time_to_sleep = ft_enhanced_atoi(av[4]);
 	if (ac == 6)
 	{
 		table->nb_meals = ft_enhanced_atoi(av[5]);
@@ -43,8 +50,6 @@ int	parse(int ac, char **av, t_table *table)
 	}
 	else
 		table->nb_meals = -1;
-	if (table->nb_philosophers < 2 || table->nb_philosophers > MAX_PHILOSOPHERS)
-		return (0);
 	if (table->time_to_die < 60 || table->time_to_eat < 60
 		|| table->time_to_sleep < 60)
 		return (0);
@@ -53,7 +58,7 @@ int	parse(int ac, char **av, t_table *table)
 	return (1);
 }
 
-int ft_error(char *str)
+int	ft_error(char *str)
 {
 	printf("%s\n", str);
 	return (-1);
@@ -67,4 +72,18 @@ long	get_time(void)
 	gettimeofday(&time, NULL);
 	ret = time.tv_sec * 1e3 + time.tv_usec / 1e3;
 	return (ret);
+}
+
+int	ft_usleep(long time_in_ms, t_table *table)
+{
+	long	start;
+
+	start = get_time();
+	while ((get_time() - start) < time_in_ms)
+	{
+		if (did_it_end(table))
+			return (0);
+		usleep(500);
+	}
+	return (0);
 }

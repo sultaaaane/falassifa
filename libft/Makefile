@@ -74,7 +74,7 @@ BONUS = 	 ft_lstadd_back_bonus.c \
 
 NAME = libft.a
 
-all: header $(NAME)
+all: $(NAME)
 	@printf "$(GREEN)\n- Your library is ready ✅🥳\n$(NO_COLOR)"
 
 $(NAME): $(OBJEC)
@@ -85,10 +85,10 @@ $(BOBJEC): $(BONUS)
 	@$(CC) $(CFLAGS) -c $(BONUS)
 	@ar rc $(NAME) $(BOBJEC)
 
-bonus: header $(BOBJEC)
+bonus: $(BOBJEC)
 	@printf "$(GREEN)\n- Your bonus library is ready ✅🥳\n$(NO_COLOR)"
 
-clean: header
+clean:
 	@rm -rf $(BOBJEC) $(OBJEC)
 	@printf "$(BLUE)clean\t:\t\t\t$(GREEN)[✓]$(NO_COLOR)\n"
 
@@ -100,19 +100,3 @@ re: fclean all
 
 .PHONY: all clean fclean bonus re
 .SECONDARY: $(OBJEC) $(BOBJEC)
-header :
-
-	@printf "$(RED)"
-	@echo "██▓     ██▓ ▄▄▄▄     █████▒▄▄▄█████▓"
-	@echo "▓██▒    ▓██▒▓█████▄ ▓██   ▒ ▓  ██▒ ▓▒"
-	@echo "▒██░    ▒██▒▒██▒ ▄██▒████ ░ ▒ ▓██░ ▒░"
-	@echo "▒██░    ░██░▒██░█▀  ░▓█▒  ░ ░ ▓██▓ ░"
-	@echo "░██████▒░██░░▓█  ▀█▓░▒█░      ▒██▒ ░" 
-	@echo "░ ▒░▓  ░░▓  ░▒▓███▀▒ ▒ ░      ▒ ░░"   
-	@echo "░ ░ ▒  ░ ▒ ░▒░▒   ░  ░          ░"    
-	@echo "  ░ ░    ▒ ░ ░    ░  ░ ░      ░"      
-	@echo "    ░  ░ ░   ░"                       
-	@echo "                  ░"                  
-	@printf  "$(MAGENTA)Author\t: $(GRAY)$(AUTHOR)\n"
-	@printf  "$(MAGENTA)CC    \t: $(CYAN)$(CC)\n"
-	@printf  "$(MAGENTA)Flags \t: $(CYAN)$(CFLAGS)\n"
