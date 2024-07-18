@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 14:29:21 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 17:58:24 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:41:18 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_philosophers(t_table *table)
 		table->philo[i].table = table;
 		table->philo[i].right_fork = &table->forks[i + 1];
 		table->philo[i].left_fork = &table->forks[i];
-		if (table->nb_philos - 1  == i)
+		if (table->nb_philos - 1 == i)
 		{
 			table->philo[i].left_fork = &table->forks[0];
 			table->philo[i].right_fork = &table->forks[i];

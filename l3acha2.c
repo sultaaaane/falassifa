@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:22:27 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 17:56:17 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:41:52 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,19 @@ int	l3acha2(t_table *table)
 	}
 	if (pthread_join(table->monitor, NULL))
 		return (ft_error("Error: pthread_join failed"));
+	return (0);
+}
+
+int	ft_usleep(long time_in_ms, t_table *table)
+{
+	long	start;
+
+	start = get_time();
+	while ((get_time() - start) < time_in_ms)
+	{
+		if (did_it_end(table))
+			return (0);
+		usleep(500);
+	}
 	return (0);
 }

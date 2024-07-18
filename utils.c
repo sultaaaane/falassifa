@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 16:08:21 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 17:56:38 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:42:35 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	is_positive(t_table *table)
 	return (1);
 }
 
-int parse_helper(int ac,char **av)
+int	parse_helper(int ac, char **av)
 {
 	int	i;
 
@@ -72,18 +72,4 @@ long	get_time(void)
 	gettimeofday(&time, NULL);
 	ret = time.tv_sec * 1e3 + time.tv_usec / 1e3;
 	return (ret);
-}
-
-int	ft_usleep(long time_in_ms, t_table *table)
-{
-	long	start;
-
-	start = get_time();
-	while ((get_time() - start) < time_in_ms)
-	{
-		if (did_it_end(table))
-			return (0);
-		usleep(500);
-	}
-	return (0);
 }
