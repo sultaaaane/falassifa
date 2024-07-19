@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:27:29 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 16:42:49 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:46:15 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_dead(t_philo *philo)
 	pthread_mutex_lock(philo->table->meal_mtx);
 	time = get_time() - philo->last_meal_time;
 	pthread_mutex_unlock(philo->table->meal_mtx);
-	if (time > philo->table->time_to_die)
+	if (time >= philo->table->time_to_die + 1)
 		return (true);
 	return (false);
 }

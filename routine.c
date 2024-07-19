@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:01:34 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 16:46:12 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:45:25 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ void	print_msg(t_philo *philo, int id, char *msg)
 	if (did_it_end(philo->table))
 		return ;
 	pthread_mutex_lock(philo->table->print_mtx);
-	if (philo->table->death)
-	{
-		pthread_mutex_unlock(philo->table->print_mtx);
-		return ;
-	}
-	printf("%ld %d %s\n", get_time() - philo->table->start_time, id, msg);
+	if(did_it_end(philo->table))
+		printf("%ld %d %s\n", get_time() - philo->table->start_time, id, msg);
 	pthread_mutex_unlock(philo->table->print_mtx);
 }
 

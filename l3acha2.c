@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:22:27 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/18 19:55:08 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:48:10 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 bool	did_it_end(t_table *table)
 {
-	if (table->nb_meals == 0)
-		return (true);
 	pthread_mutex_lock(table->end_mtx);
 	if (table->end == true)
 		return (pthread_mutex_unlock(table->end_mtx), true);
@@ -30,11 +28,11 @@ int	ft_usleep(long time_in_ms, t_table *table)
 	start = get_time();
 	while ((get_time() - start) < time_in_ms)
 	{
-		if (did_it_end(table))
-			return (0);
 		usleep(500);
 	}
 	return (0);
+	if (table)
+		return (0);
 }
 
 void	*routine(void *args)
@@ -49,7 +47,7 @@ void	*routine(void *args)
 		return (NULL);
 	}
 	if (philo->id % 2 == 0)
-		ft_usleep(1, philo->table);
+		ft_usleep(10, philo->table);
 	while (!did_it_end(philo->table))
 	{
 		eating(philo);
