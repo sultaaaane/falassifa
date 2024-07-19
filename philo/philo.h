@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:20:56 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/19 16:28:42 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:16:22 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define MAX_PHILOSOPHERS 200
+# define MAX_PHILOSOPHERS 10000
 
 typedef pthread_t		t_thread;
 typedef pthread_mutex_t	t_mutex;
@@ -46,7 +46,7 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	int					nb_philos;
+	long					nb_philos;
 	long				time_to_die;
 	long				time_to_eat;
 	long				time_to_sleep;

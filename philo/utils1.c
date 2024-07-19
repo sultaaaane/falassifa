@@ -6,7 +6,7 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:24:45 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/19 16:25:42 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:15:39 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	handle_parse(t_table *table)
 		|| table->time_to_sleep < 60)
 		return (1);
 	if (table->time_to_die == 2147483648 || table->time_to_eat == 2147483648
-		|| table->time_to_sleep == 2147483648 || table->nb_philos > 200
-		|| table->nb_meals == 2147483648)
+		|| table->time_to_sleep == 2147483648 || table->nb_philos > 10000
+		|| table->nb_meals == 2147483648 || table->nb_philos == 2147483648)
 		return (1);
 	return (0);
 }
