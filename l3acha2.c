@@ -82,4 +82,3 @@ int	l3acha2(t_table *table)
 		return (ft_error("Error: pthread_join failed"));
 	return (0);
 }
-

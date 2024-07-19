@@ -6,6 +6,8 @@ SRC =	main.c \
 		monitor.c \
 		l3acha2.c \
 		routine.c \
+		utils1.c  \
+		utils2.c  \
 
 		
 OBJ = $(SRC:.c=.o)
@@ -13,15 +15,12 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME) 
 
 $(NAME):$(OBJ)
-	@make -s -C libft
-	$(CC) $(SRC) $(CFLAGS) ./libft/libft.a -o $(NAME)
+	$(CC) $(SRC) $(CFLAGS) -o $(NAME)
 
 
 clean:
 	rm -rf $(OBJ)
-	@make -s clean -C libft
 fclean: clean
 	rm -rf $(NAME)
-	@make -s fclean -C libft
 re: fclean all
 .SECONDARY: $(OBJ)

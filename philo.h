@@ -6,14 +6,13 @@
 /*   By: mbentahi <mbentahi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:20:56 by mbentahi          #+#    #+#             */
-/*   Updated: 2024/07/19 14:25:53 by mbentahi         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:28:42 by mbentahi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <pthread.h>
@@ -83,5 +82,12 @@ void					*routine(void *args);
 bool					did_it_end(t_table *table);
 int						ft_usleep(long time_in_ms, t_table *table);
 void					clean(t_table *table);
-
+void					*ft_calloc(size_t nmemb, size_t size);
+long					ft_enhanced_atoi(char *str);
+int						ft_isall_digit(char *str);
+size_t					ft_strlen(const char *str);
+void					ft_bzero(void *s, size_t len);
+int						handle_parse(t_table *table);
+int						parse_helper(int ac, char **av);
+int						ft_isdigit(int c);
 #endif
